@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuliner Indonesia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+        .welcome-screen, .menu-screen, .contact-screen {
+            display: none;
+        }
+        .welcome-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f05454, #30475e);
+            color: white;
+            text-align: center;
+        }
+        .welcome-content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .welcome-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        .welcome-content button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #ffd700;
+            color: #30475e;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .welcome-content button:hover {
+            background-color: #f8c102;
+        }
+        header {
+            background: linear-gradient(135deg, #30475e, #f05454);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header button {
+            background-color: #ffd700;
+            color: #30475e;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        header button:hover {
+            background-color: #f8c102;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .menu-item img {
+            width: 150px; /* Ukuran gambar lebih kecil */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .menu-item img:hover {
+            transform: scale(1.1); /* Efek hover */
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #f05454;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #f05454;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #e63939;
+        }
+        footer {
+            background-color: #30475e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Halaman Awal -->
+    <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-content">
+            <h1>Selamat Datang di Kuliner Indonesia</h1>
+            <p>Jelajahi kelezatan dan kekayaan rasa kuliner khas Indonesia!</p>
+            <button onclick="showScreen('menu-screen')">Masuk</button>
+            <button onclick="showScreen('contact-screen')">Komentar</button>
+        </div>
+    </div>
+
+    <!-- Halaman Menu -->
+    <div class="menu-screen" id="menu-screen">
+        <header>
+            <h1>Kuliner Indonesia</h1>
+            <button onclick="showScreen('welcome-screen')">Kembali</button>
+        </header>
+        <div class="container">
+            <div class="menu-item" onclick="showDetail('Mi Ongklok', 'Mi Ongklok adalah hidangan khas Wonosobo, Jawa Tengah, berupa mi yang disajikan dengan kuah kental berbahan tepung kanji, dicampur dengan sayuran seperti kol dan daun kucai, serta dilengkapi bawang goreng. Rasanya gurih dan sering disajikan dengan sate sapi dan tempe kemul.')">
+                <img src="Mie-Ongklok.jpg" alt="Mi Ongklok">
+                <p>Mi Ongklok</p>
+            </div>
+            <div class="menu-item" onclick="showDetail('Rendang', 'Rendang adalah masakan khas Minangkabau yang terbuat dari daging sapi dimasak dengan santan dan campuran rempah-rempah hingga kering. Rendang memiliki cita rasa gurih, pedas, dan kaya bumbu, serta dikenal sebagai salah satu makanan terenak di dunia..')">
+                <img src="rendang.jpeg" alt="Rendang">
+                <p>Rendang</p>
+            </div>
+            <div class="menu-item" onclick="showDetail('Soto Betawi', 'Soto Betawi adalah soto khas Jakarta yang menggunakan bahan utama daging sapi, jeroan, dan sering disajikan dengan kuah santan yang kental. Rasanya gurih dan kaya rempah, biasanya dilengkapi dengan nasi, emping, dan perkedel. Soto Betawi terkenal dengan cita rasa yang kaya dan lezat.')">
+                <img src="soto betawi.jpg" alt="Soto Betawi">
+                <p>Soto Betawi</p>
+            </div>
+            <div class="menu-item" onclick="showDetail('Papeda', 'Papeda adalah makanan khas Papua yang terbuat dari sagu, berbentuk seperti bubur kental putih. Papeda biasanya disajikan dengan ikan kuah kuning atau kuah pedas. Hidangan ini sangat populer di daerah timur Indonesia, terutama di Papua, dan memiliki tekstur kenyal yang unik.')">
+                <img src="images.jpeg" alt="Papeda">
+                <p>Papeda</p>
+            </div>
+            <div class="menu-item" onclick="showDetail('Bika Ambon', 'Bika Ambon adalah kue tradisional asal Medan, Sumatera Utara. Kue ini memiliki tekstur kenyal dan berongga di dalamnya, dengan rasa manis dan aroma khas dari daun pandan serta santan. Bika Ambon terkenal dengan kelembutannya dan sering dijadikan oleh-oleh khas Medan.')">
+                <img src="bika ambon.jpg" alt="Bika Ambon">
+                <p>Bika Ambon</p>
+            </div>
+        </div>
+        <div id="detail" style="text-align: center;">
+            <h2 id="detail-title"></h2>
+            <p id="detail-description"></p>
+        </div>
+    </div>
+
+    <!-- Halaman Kontak -->
+    <div class="contact-screen" id="contact-screen">
+        <header>
+            <h1>Kontak Kami</h1>
+            <button onclick="showScreen('welcome-screen')">Kembali</button>
+        </header>
+        <div class="form-container">
+            <h2>Hubungi Kami</h2>
+            <form>
+                <label for="name">Nama:</label>
+                <input type="text" id="name" name="name" placeholder="Nama Anda" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Email Anda" required>
+                <label for="message">Pesan:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tulis pesan Anda di sini" required></textarea>
+                <button type="submit">Kirim</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Ikuti kami di Instagram: <a href="https://www.instagram.com/m4c3lla?igsh=MXZibWN3ZjdudDVpMg==" target="_blank">@username</a></p>
+    </footer>
+
+    <script>
+        function showScreen(screenId) {
+            document.querySelectorAll('.welcome-screen, .menu-screen, .contact-screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            document.getElementById(screenId).style.display = 'block';
+        }
+
+        function showDetail(title, description) {
+            document.getElementById('detail-title').textContent = title;
+            document.getElementById('detail-description').textContent = description;
+            document.getElementById('detail').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
